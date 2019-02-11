@@ -9,13 +9,17 @@ func Sum(numbers []int) int {
 }
 
 //...[]int is variadic syntax. Can take variable num of args
-func SumAll(numbersToSum ...[]int) []int {
-	lengthOfNums := len(numbersToSum)
+func SumAllTails(numbersToSum ...[]int) []int {
+	var sums []int
 
-	sums := make([]int, lengthOfNums)
-
-	for i, nums := range numbersToSum {
-		sums[i] = Sum(nums)
+	for _, nums := range numbersToSum {
+		//Checking for empty slices. If yes, then add an empty value to it.
+		if len(nums) == 0 {
+			sums = append(sums, 0)
+		} else {
+			tail := nums[1:]
+			sums = append(sums, Sum(tail))
+		}
 	}
 	return sums
 }
