@@ -12,6 +12,21 @@ type Circle struct {
 	Radius float64
 }
 
+type Triangle struct {
+	Base   float64
+	Height float64
+}
+
+//Go interface for Shapes
+type Shape interface {
+	Area() float64
+}
+
+//Struct methods begin with first letter of type then Type
+func (t Triangle) Area() float64 {
+	return (t.Base * t.Height) * 0.5
+}
+
 func (r Rectangle) Area() float64 {
 	return r.Width * r.Height
 }
